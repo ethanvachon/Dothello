@@ -15,7 +15,15 @@ class BoardsService {
   }
 
   getLists(data) {
-    return dbContext.Lists.find(data).populate('boardId')
+    const lists = dbContext.Lists.find(data)
+    if (!lists) {
+      throw new BadRequest('invaid id')
+    }
+    return lists
+  }
+
+  getTasks(data) {
+    return dbContext.Tasks.find(data)
   }
 
   async create(data) {

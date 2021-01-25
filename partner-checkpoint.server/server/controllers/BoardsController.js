@@ -11,6 +11,7 @@ export class BoardsController extends BaseController {
       .get('', this.getAll)
       .get('/:id', this.getOne)
       .get('/:id/lists', this.getLists)
+      .get('/:id/tasks', this.getTasks)
       .post('', this.createBoard)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -18,7 +19,6 @@ export class BoardsController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      req.creatorId = req.userInfo.id
       res.send(await boardsService.getAll({ userId: req.userInfo.id }))
     } catch (error) {
       next(error)
@@ -36,6 +36,14 @@ export class BoardsController extends BaseController {
   async getLists(req, res, next) {
     try {
       res.send(await boardsService.getLists({ boardId: req.params.id }))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getTasks(req, res, next) {
+    try {
+      res.send(await boardsService.getTasks({ boardId: req.params.id }))
     } catch (error) {
       next(error)
     }
