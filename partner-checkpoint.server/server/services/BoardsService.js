@@ -14,8 +14,28 @@ class BoardsService {
     return dbContext.Boards.find(data).populate('userId')
   }
 
+  getLists(data) {
+    return dbContext.Lists.find(data).populate('boardId')
+  }
+
   async create(data) {
     return dbContext.Boards.create(data)
+  }
+
+  edit(body, id) {
+    const edited = dbContext.Boards.findByIdAndUpdate(id, body, { new: true })
+    if (!edited) {
+      throw new BadRequest('invalid id')
+    }
+    return edited
+  }
+
+  delete(id) {
+    const deleted = dbContext.Boards.findByIdAndDelete(id)
+    if (!deleted) {
+      throw new BadRequest('invalid id')
+    }
+    return deleted
   }
 }
 

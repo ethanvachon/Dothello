@@ -10,7 +10,10 @@ export class BoardsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .get('/:id', this.getOne)
+      .get('/:id/lists', this.getLists)
       .post('', this.createBoard)
+      .put('/:id', this.edit)
+      .delete('/:id', this.delete)
   }
 
   async getAll(req, res, next) {
@@ -30,9 +33,33 @@ export class BoardsController extends BaseController {
     }
   }
 
+  async getLists(req, res, next) {
+    try {
+      res.send(await boardsService.getLists({ boardId: req.params.id }))
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async createBoard(req, res, next) {
     try {
       res.send(await boardsService.create(req.body))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async edit(req, res, next) {
+    try {
+      res.send(await boardsService.edit(req.body, req.params.id))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async delete(req, res, next) {
+    try {
+      res.send(await boardsService.delete(req.params.id))
     } catch (error) {
       next(error)
     }
