@@ -1,0 +1,11 @@
+:root {
+  --light-gray: rgb(204, 204, 204);
+  --theme-main: white;
+  --theme-text: black;
+  --theme-text-mid: gray;
+  --theme-text-invert: white;
+  --theme-background: #F2F2F2;
+  --theme-background-second: white;
+  --popover-color: white;
+  --new-list-color: red;
+}
