@@ -18,7 +18,7 @@ class BoardService {
   async getBoard(id) {
     try {
       const res = await api.get(baseURL + id)
-      AppState.activeBoard = new Board(res.data)
+      AppState.board = new Board(res.data)
     } catch (error) {
       logger.error(error)
     }

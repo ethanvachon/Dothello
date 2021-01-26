@@ -17,11 +17,12 @@ export default {
   name: 'BoardsPage',
   setup() {
     onMounted(() => {
-      boardService.postBoard({
-        name: 'this is a name'
-      })
-      boardService.getBoards()
-      AppState.boards = [{ name: 'Hi this is a board bitchh' }, { name: 'hi 2' }, { name: ' REEEEE' }, { name: 'goteeeem' }, { name: 'board three' }]
+      const checking = setInterval(function() {
+        if (AppState.user.isAuthenticated) {
+          boardService.getBoards()
+          clearInterval(checking)
+        }
+      }, 10)
     })
     return {
       boards: computed(() => AppState.boards),

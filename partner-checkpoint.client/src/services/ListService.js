@@ -18,25 +18,25 @@ class ListService {
   async postList(data) {
     try {
       await api.post(baseURL, data)
-      this.getLists()
+      this.getLists(data.boardId)
     } catch (error) {
       logger.error(error)
     }
   }
 
-  async deleteList(id) {
+  async deleteList(id, boardId) {
     try {
       await api.delete(baseURL + id)
-      this.getLists()
+      this.getLists(boardId)
     } catch (error) {
       logger.error(error)
     }
   }
 
-  async putList(data, id) {
+  async putList(data, id, boardId) {
     try {
       await api.put(baseURL + id, data)
-      this.getLists()
+      this.getLists(boardId)
     } catch (error) {
       logger.error(error)
     }
