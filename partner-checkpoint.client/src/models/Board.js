@@ -1,6 +1,7 @@
 export class Board {
   constructor(data) {
+    this.id = data._id
     this.name = data.name
-    this.creator = data.creatorId
+    this.user = data.userId
   }
 }
