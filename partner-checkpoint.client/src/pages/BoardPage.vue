@@ -1,4 +1,5 @@
 <template lang="">
+  <button></button>
   <h1>{{ board.name }}</h1>
   <p>raw data: {{ board }}</p>
   {{ routeParams }}
