@@ -6,9 +6,9 @@ import { api } from './AxiosService'
 const baseURL = '/api/tasks'
 
 class TaskService {
-  async getTasks() {
+  async getTasks(boardId) {
     try {
-      const res = await api.get(baseURL)
+      const res = await api.get('/api/boards/' + boardId + '/tasks')
       AppState.tasks = res.data.map(data => new Task(data))
     } catch (error) {
       logger.error(error)
@@ -18,25 +18,25 @@ class TaskService {
   async postTask(data) {
     try {
       await api.post(baseURL, data)
-      this.getTasks()
+      this.getTasks(data.boardId)
     } catch (error) {
       logger.error(error)
     }
   }
 
-  async deleteTask(id) {
+  async deleteTask(id, boardId) {
     try {
       await api.delete(baseURL + id)
-      this.getTasks()
+      this.getTasks(boardId)
     } catch (error) {
       logger.error(error)
     }
   }
 
-  async putTask(data, id) {
+  async putTask(data, id, boardId) {
     try {
       await api.put(baseURL + id, data)
-      this.getTasks()
+      this.getTasks(boardId)
     } catch (error) {
       logger.error(error)
     }
