@@ -17,6 +17,8 @@ export default {
   name: 'BoardsPage',
   setup() {
     onMounted(() => {
+      console.log('mounted')
+      debugger
       const checking = setInterval(function() {
         if (AppState.user.isAuthenticated) {
           boardService.getBoards()

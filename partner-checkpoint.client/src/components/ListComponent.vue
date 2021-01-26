@@ -26,6 +26,8 @@
       </div>
     </div>
 
+    {{ tasks }}
+
     <div class="list-body row py-3">
       <div class="col" id="${this.id}-tasks">
         <task-component v-for="task in tasks" :key="task.name" :task="task"></task-component>

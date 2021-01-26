@@ -23,15 +23,17 @@ export default {
   setup() {
     const route = useRoute()
     onMounted(() => {
+      console.log('mounted')
       const checking = setInterval(function() {
         if (AppState.user.isAuthenticated) {
+          debugger
           boardService.getBoard(route.params.id)
           listService.getLists(route.params.id)
           taskService.getTasks(route.params.id)
           clearInterval(checking)
         }
       }, 10)
-      AppState.lists = [{ name: 'Hi this is a board bitchh', id: '1' }, { name: 'hi 2' }, { name: ' REEEEE', id: '3' }, { name: 'goteeeem' }, { name: 'board three' }]
+      AppState.lists = [{ name: 'Hi this is a board', id: '1' }, { name: 'hi 2' }, { name: ' REEEEE', id: '3' }, { name: 'goteeeem' }, { name: 'board three' }]
       AppState.tasks = [{ name: 'this is a task', listId: '1' }, { name: 'this should be on the third', listId: '3' }]
     })
     return {
