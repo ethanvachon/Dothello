@@ -1,6 +1,10 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 class TasksService {
+  getComments(data) {
+    return dbContext.Comments.find(data).populate('userId')
+  }
+
   async create(data) {
     return dbContext.Tasks.create(data)
   }

@@ -7,9 +7,18 @@ export class TasksController extends BaseController {
     super('api/tasks')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
+      .get('/:id/comments', this.getComments)
       .post('', this.createTask)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
+  }
+
+  async getComments(req, res, next) {
+    try {
+      res.send(await tasksService.getComments({ taskId: req.params.id }))
+    } catch (error) {
+      next(error)
+    }
   }
 
   async createTask(req, res, next) {
