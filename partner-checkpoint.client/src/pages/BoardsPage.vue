@@ -1,11 +1,6 @@
 <template lang="">
   <div>
-    <button @click="makeBoard">
-      Make Board
-    </button>
-    <button @click="getBoards">
-      Get
-    </button>
+    <nav-component :page="'Boards'"></nav-component>
     <button @click="login">
       Log In
     </button>
@@ -39,9 +34,9 @@ export default {
           name: 'this is a name'
         })
       },
-      getBoards() {
-        boardService.getBoards()
-      },
+      // getBoards() {
+      //   boardService.getBoards()
+      // },
       login() {
         AuthService.loginWithPopup()
       }

@@ -15,7 +15,7 @@ class ListsService {
   }
 
   async edit(body, id) {
-    const edited = dbContext.Lists.findByIdAndUpdate(id, body, { new: true })
+    const edited = dbContext.Lists.findByIdAndUpdate(id, body, { new: true, runValidators: true })
     if (!edited) {
       throw new BadRequest('invalid id')
     }
