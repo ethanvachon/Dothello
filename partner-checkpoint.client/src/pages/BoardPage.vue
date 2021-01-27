@@ -29,10 +29,12 @@ import { boardService } from '../services/BoardService'
 import { taskService } from '../services/TaskService'
 import { useRoute } from 'vue-router'
 import { AuthService } from '../services/AuthService'
+// import { dragDrop } from '../utils/DragDrop'
 export default {
   setup() {
     const route = useRoute()
     onMounted(() => {
+      // dragDrop()
       const checking = setInterval(function() {
         if (AppState.user.isAuthenticated) {
           boardService.getBoard(route.params.id)
