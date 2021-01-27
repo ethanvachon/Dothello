@@ -14,16 +14,55 @@
   height: 100%;
 }
 
-#nav-add-input {
-  width: 50%;
-  transition: width .2s;
-  background-color: rgba(255, 255, 255, 0.6);
-  border: none;
-  border-radius: 2px;
+.nav-add-input-div {
+  width: 30px;
+  transition: width .2s, height .2s;
+  position: relative;
+  height: 30px;
 }
 
-#nav-add-input:focus {
+.nav-add-input-div.focus {
+  width: 50%;
+  height: 30px;
+}
+
+.nav-add-input {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  border-radius: 2px;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.0);
+  transition: color .2s;
+  cursor: pointer;
+}
+
+.nav-add-input.focus {
   outline: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 1);
+  cursor: auto;
+}
+
+.nav-add-input-icon {
+  position: absolute;
+  right: 0;
+  height: 30px;
+  width: 30px;
+  padding-top: 5px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .2s
+  /* top: 0; */
+}
+
+.nav-add-input-icon.focus {
+  /* pointer-events: all;
+  cursor: pointer; */
+  opacity: 0
 }
 
 #nav-logo {

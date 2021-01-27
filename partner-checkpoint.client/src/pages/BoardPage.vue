@@ -1,7 +1,10 @@
 <template>
-  <div>
+  <div id="page-board"
+       class="page"
+       :style="`background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('${board.imgUrl}') no-repeat center center /cover;`"
+  >
     <!-- <Navbar /> -->
-    <nav-component :page="'Board'"></nav-component>
+    <nav-component :page="'Board'" :board-id="board.id"></nav-component>
     <!-- <div class="comment-modal-background" v-if="showModal"></div> -->
     <comment-modal v-if="showModal"></comment-modal>
     <!-- <button @click="addList">

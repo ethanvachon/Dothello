@@ -19,11 +19,11 @@ html, body, #app, main, #home, .page {
 }
 
 body {
-  background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('http://7-themes.com/data_images/collection/2/4440058-hd-wallpapers.jpg') no-repeat center 30% /cover;
+  /* background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('http://7-themes.com/data_images/collection/2/4440058-hd-wallpapers.jpg') no-repeat center 30% /cover; */
 }
 
 #app {
-  background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2013&q=80') no-repeat center center /cover;
+  /* background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2013&q=80') no-repeat center center /cover; */
 }
 
 .fancy-scrollbar::-webkit-scrollbar {

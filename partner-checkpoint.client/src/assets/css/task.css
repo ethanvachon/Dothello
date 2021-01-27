@@ -1,7 +1,7 @@
 .task {
   position: relative;
   background-color: white;
-  border-radius: 10px
+  border-radius: 10px;
 }
 
 .task-checkbox {
@@ -16,6 +16,14 @@
 
 .task-checkbox.checked+.task-name {
   text-decoration: line-through;
+}
+
+.task-name {
+  display: inline-block;
+  width: 50%;
+  height: fit-content;
+  /* overflow-wrap: break-word; */
+  word-wrap: break-word;
 }
 
 .task-dot-button {
