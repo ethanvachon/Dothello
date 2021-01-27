@@ -3,7 +3,7 @@ import { List } from '../models/List'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
-const baseURL = '/api/lists'
+const baseURL = '/api/lists/'
 
 class ListService {
   async getLists(boardId) {

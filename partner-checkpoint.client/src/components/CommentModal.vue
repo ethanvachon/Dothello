@@ -1,5 +1,5 @@
 <template lang="">
-  <div id="comment-modal-background" class=" d-flex justify-content-center">
+  <div id="comment-modal-background" class="d-flex justify-content-center">
     <div id="comment-modal-clickoff" @click="closeModal"></div>
     <div id="comment-modal">
       <div class="task my-2 p-2">
@@ -26,8 +26,8 @@
       <div id="comment-form">
         <textarea id="comment-form-text" v-model="form.commentInput"></textarea>
       </div>
-      <button @click="addComment">
-        Add Comment
+      <button id="comment-form-button" @click="addComment">
+        <i class="fas fa-plus"></i>
       </button>
       <hr />
       <comment-component v-for="comment in comments" :key="comment.name" :comment="comment"></comment-component>
