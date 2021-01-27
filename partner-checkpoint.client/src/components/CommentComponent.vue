@@ -1,15 +1,12 @@
 <template lang="">
   <div>
+    <p>{{ comment.userName }}</p>
     <p v-html="comment.name"
        class="my-2 ml-2"
        :contenteditable="comment.userId === accountId"
        @blur="editComment"
     >
     </p>
-    CommentID: {{ comment.id }}
-    userId: {{ comment.userId }}
-    accountId: {{ accountId }}
-    taskId: {{ comment.taskId }}
     <button @click="deleteComment"
             v-if="comment.userId === accountId"
     >

@@ -29,7 +29,6 @@
       <button @click="addComment">
         Add Comment
       </button>
-      {{ form }}
       <hr />
       <comment-component v-for="comment in comments" :key="comment.name" :comment="comment"></comment-component>
     </div>
