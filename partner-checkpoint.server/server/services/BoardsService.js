@@ -27,11 +27,13 @@ class BoardsService {
   }
 
   async create(data) {
+    const img = ['https://wallpaperheart.com/wp-content/uploads/2018/03/hd-background-wallpapers-free-amazing-cool-tablet-high-definition.jpg', 'https://wallpaperaccess.com/full/138733.jpg']
+    data.imgUrl = img[Math.floor(Math.random() * img.length)]
     return dbContext.Boards.create(data)
   }
 
   edit(body, id) {
-    const edited = dbContext.Boards.findByIdAndUpdate(id, body, { new: true })
+    const edited = dbContext.Boards.findByIdAndUpdate(id, body, { new: true, runValidators: true })
     if (!edited) {
       throw new BadRequest('invalid id')
     }

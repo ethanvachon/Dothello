@@ -8,7 +8,7 @@ class CommentsService {
   }
 
   async editComment(body, id) {
-    const edited = dbContext.Comments.findByIdAndUpdate(id, body, { new: true })
+    const edited = dbContext.Comments.findByIdAndUpdate(id, body, { new: true, runValidators: true })
     if (!edited) {
       throw new BadRequest('invalid id')
     }

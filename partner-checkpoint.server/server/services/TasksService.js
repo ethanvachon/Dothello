@@ -10,7 +10,7 @@ class TasksService {
   }
 
   async edit(body, id) {
-    const edited = dbContext.Tasks.findByIdAndUpdate(id, body, { new: true })
+    const edited = dbContext.Tasks.findByIdAndUpdate(id, body, { new: true, runValidators: true })
     if (!edited) {
       throw new BadRequest('invalid id')
     }
