@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="task d-flex my-2 p-2" draggable="true">
+  <div class="task d-flex my-2 p-2" draggable="true" :taskId="task.id" :boardId="task.boardId">
     <!-- <input
       id="${this.id}-checkbox"
       class="task-checkbox"
@@ -19,11 +19,10 @@
   </div>
 </template>
 <script>
-import { onMounted, reactive } from 'vue'
+import { reactive } from 'vue'
 // import CommentModal from '../components/CommentModal'
 import { AppState } from '../AppState'
 import { commentService } from '../services/CommentService'
-import { dragDrop } from '../utils/DragDrop'
 export default {
   name: 'TaskComponent',
   // components: { CommentModal },
@@ -34,9 +33,6 @@ export default {
     }
   },
   setup(props) {
-    onMounted(() => {
-      dragDrop()
-    })
     const state = reactive({
       checked: false
     })

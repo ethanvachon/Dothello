@@ -1,4 +1,4 @@
-import { taskService } from '../services/TaskService'
+// import { taskService } from '../services/TaskService'
 
 export function dragDrop() {
   let dragged
@@ -11,6 +11,7 @@ export function dragDrop() {
   document.addEventListener('dragstart', function(event) {
     // store a ref. on the dragged elem
     dragged = event.target
+    console.log(dragged)
     // make it half transparent
     event.target.style.opacity = 1
   }, false)
@@ -50,7 +51,7 @@ export function dragDrop() {
     if (event.target.classList.contains('dropzone')) {
       event.target.style.background = ''
       dragged.parentNode.removeChild(dragged)
-      // event.target.appendChild(dragged)
+      event.target.appendChild(dragged)
       // taskService.putTask()
     }
   }, false)
