@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="task my-2 p-2">
+  <div class="task d-flex my-2 p-2" draggable="true">
     <!-- <input
       id="${this.id}-checkbox"
       class="task-checkbox"
@@ -11,8 +11,7 @@
       <i class="far fa-square" v-if="!state.checked"></i>
       <i class="far fa-check-square" v-if="state.checked"></i>
     </span>
-    <div class="task-name">
-      {{ task.name }}
+    <div v-html="task.name" class="task-name">
     </div>
     <button class="task-dot-button">
       <i class="fas fa-ellipsis-h" @click="openComments"></i>
@@ -20,10 +19,11 @@
   </div>
 </template>
 <script>
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 // import CommentModal from '../components/CommentModal'
 import { AppState } from '../AppState'
 import { commentService } from '../services/CommentService'
+import { dragDrop } from '../utils/DragDrop'
 export default {
   name: 'TaskComponent',
   // components: { CommentModal },
@@ -34,6 +34,9 @@ export default {
     }
   },
   setup(props) {
+    onMounted(() => {
+      dragDrop()
+    })
     const state = reactive({
       checked: false
     })

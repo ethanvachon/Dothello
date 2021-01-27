@@ -1,7 +1,7 @@
 <template>
   <div id="page-board"
        class="page"
-       :style="`background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('${board.imgUrl}') no-repeat center center /cover;`"
+       :style="`background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('${board.imgUrl}') no-repeat center center /cover;`"
   >
     <!-- <Navbar /> -->
     <nav-component :page="'Board'" :board-id="board.id"></nav-component>

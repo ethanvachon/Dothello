@@ -16,6 +16,7 @@
         <form :class="{'focus':input.image}"
               class="ml-2 align-items-center nav-add-input-div"
               @submit.prevent="setImage(boardId)"
+              v-if="page === 'Board'"
         >
           <input class="nav-add-input"
                  @focus="input.image = true"
@@ -29,12 +30,14 @@
       <!-- <inp class="fas fa-plus" @click="add(page)" ></input> -->
       <!-- </div> -->
       <div class="col-4 d-flex justify-content-center align-items-center nav-column">
-        <h3 id="nav-logo" class="m-0">
+        <!-- <router-link to="/boards"> -->
+        <h3 id="nav-logo" class="m-0" @click="home">
           Dethello
         </h3>
+        <!-- </router-link> -->
       </div>
-      <div class="col-4 nav-column d-flex justify-content-between align-items-center">
-        <button id="nav-login" @click="logout" class="">
+      <div class="col-4 nav-column d-flex justify-content-end align-items-center">
+        <button id="nav-logout" @click="logout" class="mr-3">
           Logout
         </button>
         <img
@@ -54,6 +57,7 @@ import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
 import { listService } from '../services/ListService'
 import { boardService } from '../services/BoardService'
+import { useRouter } from 'vue-router'
 export default {
   props: {
     page: {
@@ -62,6 +66,7 @@ export default {
     }
   },
   setup(props) {
+    const router = useRouter()
     const input = reactive({
       add: false,
       addName: '',
@@ -79,11 +84,21 @@ export default {
             boardId: boardId
           }
           listService.postList(data)
+        } else if (props.page === 'Boards') {
+          const data = {
+            name: input.addName
+          }
+          boardService.postBoard(data)
         }
+        input.addName = ''
       },
       async setImage(boardId) {
         await boardService.putBoard({ imgUrl: input.setImage }, boardId)
+        input.setImage = ''
         await boardService.getBoard(boardId)
+      },
+      home() {
+        router.push('/boards')
       },
       login() {
         AuthService.loginWithPopup()
