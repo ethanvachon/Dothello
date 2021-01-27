@@ -81,8 +81,9 @@ export default {
           listService.postList(data)
         }
       },
-      setImage(boardId) {
-        boardService.putBoard({ imgUrl: input.setImage }, boardId)
+      async setImage(boardId) {
+        await boardService.putBoard({ imgUrl: input.setImage }, boardId)
+        await boardService.getBoard(boardId)
       },
       login() {
         AuthService.loginWithPopup()

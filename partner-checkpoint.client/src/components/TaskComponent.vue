@@ -11,7 +11,9 @@
       <i class="far fa-square" v-if="!state.checked"></i>
       <i class="far fa-check-square" v-if="state.checked"></i>
     </span>
-    <span class="task-name">{{ task.name }}</span>
+    <div class="task-name">
+      {{ task.name }}
+    </div>
     <button class="task-dot-button">
       <i class="fas fa-ellipsis-h" @click="openComments"></i>
     </button>
