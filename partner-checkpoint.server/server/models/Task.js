@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { commentsService } from '../services/CommentsService'
 const Schema = mongoose.Schema
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -11,4 +12,11 @@ const Task = new Schema(
   }
 )
 
+Task.pre('findOneAndDelete', function(next) {
+  try {
+    commentsService.deleteMany({ taskId: this.conditions._id })
+  } catch (error) {
+    next(error)
+  }
+})
 export default Task
