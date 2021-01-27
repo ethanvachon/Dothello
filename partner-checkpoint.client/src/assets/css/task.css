@@ -1,14 +1,20 @@
 .task {
   position: relative;
+  background-color: white;
+  border-radius: 10px
 }
 
 .task-checkbox {
-  width: 20px;
-  border: 1px solid red;
+  /* width: 20px; */
+  /* border: 1px solid red; */
   display: inline-block
 }
 
-.task-checkbox:checked+.task-name {
+/* .task-checkbox:checked+.task-name {
+  text-decoration: line-through;
+} */
+
+.task-checkbox.checked+.task-name {
   text-decoration: line-through;
 }
 

@@ -1,0 +1,29 @@
+#comment-modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  user-select: none;
+}
+
+#comment-modal-clickoff {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0)
+}
+
+#comment-modal {
+  background-color: white;
+  border-radius: 10px;
+  width: 50%;
+  z-index: 11;
+  height: fit-content;
+  margin-top: 30px;
+  padding: 15px;
+}

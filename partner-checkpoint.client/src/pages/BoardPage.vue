@@ -1,15 +1,22 @@
-<template lang="">
-  <button @click="addList">
-    Add List
-  </button>
-  <h1>{{ board.name }}</h1>
-  <p>raw data: {{ board }}</p>
-  {{ routeParams }}
-  <!-- <div class="row justify-content-center"> -->
-  <div id="lists" class="card-columns">
-    <list-component v-for="list in lists" :key="list.name" :list="list"></list-component>
+<template>
+  <div>
+    <!-- <Navbar /> -->
+    <nav-component :page="'Board'"></nav-component>
+    <!-- <div class="comment-modal-background" v-if="showModal"></div> -->
+    <comment-modal v-if="showModal"></comment-modal>
+    <!-- <button @click="addList">
+      Add List
+    </button> -->
+    <!-- <h1>{{ board.name }}</h1> -->
+    <!-- <div class="row justify-content-center"> -->
+    <div id="board-scroll" class="fancy-scrollbar">
+      <!-- <div class="container-fluid"> -->
+      <div id="lists" class="d-flex align-items-start mx-1">
+        <list-component v-for="list in lists" :key="list.name" :list="list"></list-component>
+      </div>
+      <!-- </div> -->
+    </div>
   </div>
-  <!-- </div> -->
 </template>
 <script>
 import { computed, onMounted } from 'vue'
@@ -18,15 +25,13 @@ import { AppState } from '../AppState'
 import { boardService } from '../services/BoardService'
 import { taskService } from '../services/TaskService'
 import { useRoute } from 'vue-router'
+import { AuthService } from '../services/AuthService'
 export default {
-  name: 'ListPage',
   setup() {
     const route = useRoute()
     onMounted(() => {
-      console.log('mounted')
       const checking = setInterval(function() {
         if (AppState.user.isAuthenticated) {
-          debugger
           boardService.getBoard(route.params.id)
           listService.getLists(route.params.id)
           taskService.getTasks(route.params.id)
@@ -39,13 +44,19 @@ export default {
     return {
       board: computed(() => AppState.board),
       lists: computed(() => AppState.lists),
+      showModal: computed(() => AppState.showModal),
       addList() {
         listService.postList({ name: 'Hi this is a list', boardId: route.params.id, color: 'red' })
+      },
+      login() {
+        AuthService.loginWithPopup()
       }
     }
   }
 }
 </script>
 <style scoped>
-@import "../assets/css/boardpage.css"
+@import "../assets/css/boardpage.css";
+@import "../assets/css/global.css";
+@import "../assets/css/comment.css";
 </style>

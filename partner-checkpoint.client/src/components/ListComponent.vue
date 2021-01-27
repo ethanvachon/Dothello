@@ -1,7 +1,7 @@
 <template lang="">
-  <div class="list-card col my-3 card">
-    <div class="list-header row" :style="`background-color:${list.color}`">
-      <div class="col p-0">
+  <div class="list-card col my-3">
+    <div class="list-header row" :style="`background-color: ${list.color}`">
+      <div class="col p-0 d-flex justify-content-center">
         <button
           class="list-delete-button"
           onclick="app.modalController.confirmDelete('${this.id}')"
@@ -11,10 +11,8 @@
           <i class="fas fa-times"></i>
         </button>
 
-        <h5 class="list-title text-center pt-2">
+        <h5 class="list-title text-center py-1 px-3">
           {{ list.name }}
-          {{ list.id }}
-          {{ list.boardId }}
         </h5>
 
         <!-- <p
@@ -26,8 +24,6 @@
       </div>
     </div>
 
-    {{ tasks }}
-
     <div class="list-body row py-3">
       <div class="col" id="${this.id}-tasks">
         <task-component v-for="task in tasks" :key="task.name" :task="task"></task-component>
@@ -38,35 +34,34 @@
     </div>
 
     <div class="list-footer row d-flex justify-content-center py-3">
-      <!-- <form class="new-task-form" onsubmit="app.taskController.createTask('${this.id}')"> -->
-      <input
-        name="new-task-name"
-        class="new-task-name"
-        type="text"
-        placeholder="Add Task..."
-        :style="`caret-color: ${list.color}`"
-        pattern=".{3,30}"
-        maxlength="30"
-        required
-        onfocusin="this.style['border-bottom']='2px solid ${this.color}'"
-        onfocusout="this.style['border-bottom']='2px solid var(--light-gray)'"
-        v-model="state.newTask"
-      >
+      <form class="new-task-form" @submit.prevent="addTask">
+        <input
+          name="new-task-name"
+          class="new-task-name"
+          type="text"
+          placeholder="Add Task..."
+          :style="`caret-color: ${list.color}`"
+          pattern=".{3,30}"
+          maxlength="30"
+          required
+          :onfocusin="`this.style['border-bottom']='2px solid ${list.color}'`"
+          onfocusout="this.style['border-bottom']='2px solid var(--light-gray)'"
+          v-model="state.newTask"
+        >
 
-      <button class="new-task-fake-button">
-        <i class="fas fa-plus"></i>
-      </button>
+        <button class="new-task-fake-button">
+          <i class="fas fa-plus"></i>
+        </button>
 
-      <button
-        class="new-task-button"
-        :style="`color: ${list.color}`"
-        onmouseover="this.style['background-color']='${this.color}';this.style.color='white'"
-        onmouseout="this.style['background-color']='rgb(0, 0, 0, 0)';this.style.color='${this.color}'"
-        @click="addTask"
-      >
-        <i class="fas fa-plus"></i>
-      </button>
-      <!-- </form> -->
+        <button
+          class="new-task-button"
+          :style="`color: ${list.color}`"
+          :onmouseover="`this.style['background-color']='${list.color}';this.style.color='white'`"
+          :onmouseout="`this.style['background-color']='rgb(0, 0, 0, 0)';this.style.color='${list.color}'`"
+        >
+          <i class="fas fa-plus"></i>
+        </button>
+      </form>
     </div>
   </div>
 </template>

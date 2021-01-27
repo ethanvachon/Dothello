@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: loadPage('HomePage')
+    component: loadPage('BoardsPage')
   },
   {
     path: '/boards',
@@ -31,7 +31,8 @@ const routes = [
     name: 'Account',
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
-  }
+  },
+  { path: '/:pathMatch(.*)', name: 'All', component: loadPage('HomePage') }
 ]
 
 const router = createRouter({

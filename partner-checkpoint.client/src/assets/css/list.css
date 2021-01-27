@@ -3,18 +3,34 @@ input::-webkit-color-swatch {
 }
 
 .list-card {
-  box-shadow: 0px 10px 8px #bebebe;
+  /* box-shadow: 0px 10px 8px #bebebe; */
   min-height: 100px;
   position: relative;
   border: 0;
   display: inline-block;
-  background-color: var(--theme-background-second)
+  background-color: #ebecf0;
+  width: 272px;
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 10px;
+  user-select: none;
 }
 
 .list-header {
   /* height: 100px; */
   text-shadow: 0px 2px 6px #5a5a5a;
   color: white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.list-title {
+  text-shadow: 0px 2px 6px #5a5a5a;
+  color: white;
+  width: fit-content;
+  margin-top: 10px;
+  border-radius: 10px;
+  /* margin-top: 10px */
 }
 
 .list-delete-button {
@@ -37,12 +53,6 @@ input::-webkit-color-swatch {
 
 .list-card:hover .list-delete-button {
   opacity: 1;
-}
-
-.list-title {
-  text-shadow: 0px 2px 6px #5a5a5a;
-  color: white;
-  /* margin-top: 10px */
 }
 
 .list-footer {
