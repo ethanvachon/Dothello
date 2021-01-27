@@ -1,6 +1,10 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 class CommentsService {
+  async deleteMany(query) {
+    await dbContext.Comments.deleteMany(query)
+  }
+
   async createComment(data) {
     const task = dbContext.Tasks.findById(data.taskId)
     data.boardId = task.boardId

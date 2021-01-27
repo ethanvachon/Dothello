@@ -11,7 +11,9 @@ class BoardsService {
   }
 
   async getAll(data) {
-    return dbContext.Boards.find(data).populate('userId')
+    const created = await dbContext.Boards.find(data).populate('userId')
+    created.push(...await dbContext.Boards.find({ collaborators: { $in: [data.userId] } }))
+    return created
   }
 
   getLists(data) {
