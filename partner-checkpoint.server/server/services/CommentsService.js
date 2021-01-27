@@ -2,6 +2,8 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 class CommentsService {
   async createComment(data) {
+    const task = dbContext.Tasks.findById(data.taskId)
+    data.boardId = task.boardId
     return dbContext.Comments.create(data)
   }
 
