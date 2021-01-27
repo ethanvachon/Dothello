@@ -40,5 +40,5 @@ export default {
 }
 </script>
 <style scoped>
-@import "../assets/css/board.css"
+@import "../assets/css/board.css";
 </style>

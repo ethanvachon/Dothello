@@ -24,8 +24,8 @@
       </div>
     </div>
 
-    <div class="list-body row py-3">
-      <div class="col" id="${this.id}-tasks">
+    <div class="list-body row">
+      <div class="col dropzone py-3" id="${this.id}-tasks">
         <task-component v-for="task in tasks" :key="task.name" :task="task"></task-component>
       </div>
     </div>
