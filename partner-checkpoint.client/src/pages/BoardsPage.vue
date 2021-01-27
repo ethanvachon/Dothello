@@ -1,24 +1,30 @@
 <template lang="">
-  <button @click="makeBoard">
-    Make Board
-  </button>
-  <button @click="getBoards">
-    Get
-  </button>
-  <div class="row justify-content-center">
-    <board-component v-for="board in boards" :key="board.name" :board="board"></board-component>
+  <div>
+    <button @click="makeBoard">
+      Make Board
+    </button>
+    <button @click="getBoards">
+      Get
+    </button>
+    <button @click="login">
+      Log In
+    </button>
+    <div class="row justify-content-center">
+      <board-component v-for="board in boards" :key="board.name" :board="board"></board-component>
+    </div>
   </div>
 </template>
 <script>
 import { computed, onMounted } from 'vue'
 import { boardService } from '../services/BoardService'
 import { AppState } from '../AppState'
+import BoardComponent from '../components/BoardComponent'
+import { AuthService } from '../services/AuthService'
 export default {
-  name: 'BoardsPage',
+  name: 'Boards',
+  components: { BoardComponent },
   setup() {
     onMounted(() => {
-      console.log('mounted')
-      debugger
       const checking = setInterval(function() {
         if (AppState.user.isAuthenticated) {
           boardService.getBoards()
@@ -35,6 +41,9 @@ export default {
       },
       getBoards() {
         boardService.getBoards()
+      },
+      login() {
+        AuthService.loginWithPopup()
       }
     }
   }
