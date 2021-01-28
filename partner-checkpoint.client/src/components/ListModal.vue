@@ -1,6 +1,6 @@
 <template lang="">
   <div class="modal-background d-flex justify-content-center">
-    <div class="modal-clickoff" @click="closeModal"></div>
+    <div class="modal-clickoff" @click="closeModal()"></div>
     <div class="modal-display">
       <!-- <input
       id="${this.id}-checkbox"
@@ -9,7 +9,11 @@
       onclick=""
     > -->
       <!-- <comment-modal v-if="state.showComments"></comment-modal> -->
-      <h3 class="list-title text-center py-1 px-3" :style="`background-color: ${list.color}`">
+      <h3 class="list-title text-center py-1 px-3"
+          :style="`background-color: ${list.color}`"
+          :contenteditable="true"
+          @blur="editName"
+      >
         {{ list.name }}
       </h3>
       <div class="d-flex justify-content-stretch">
@@ -23,6 +27,9 @@
           </div>
         </div>
       </div>
+      <button @click="deleteList(list)">
+        Delete
+      </button>
       <!-- <button class="task-dot-button">
           <i class="fas fa-ellipsis-h" @click="openComments"></i>
         </button> -->
@@ -30,7 +37,7 @@
   </div>
 </template>
 <script>
-import { computed, reactive } from 'vue'
+import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { listService } from '../services/ListService'
 export default {
@@ -46,15 +53,22 @@ export default {
       '#9d47ff',
       '#ff47ce'
     ]
-    const state = reactive({
-      checked: computed(() => AppState.task.completed)
-    })
+    const list = computed(() => AppState.list)
     return {
       colors,
-      state,
-      list: computed(() => AppState.list),
+      list,
+      editName(e) {
+        listService.putList({ name: e.target.innerText }, list.value.id, list.value.boardId)
+      },
       setColor(color, list) {
         listService.putList({ color: color }, list.id, list.boardId)
+        AppState.list.color = color
+      },
+      deleteList(list) {
+        listService.deleteList(list.id, list.boardId)
+        // AppState.splice(AppState.lists.findIndex(l => l.id === list.id), 1)
+        AppState.list = {}
+        this.closeModal()
       },
       closeModal() {
         AppState.showModal = false

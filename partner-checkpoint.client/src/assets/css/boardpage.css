@@ -17,6 +17,14 @@
   white-space: nowrap;
 }
 
+.board-modal-input {
+  width: 100%;
+  border-radius: 10px;
+  border-radius: 0;
+  border: none;
+  border-bottom: solid 1px black
+}
+
 /* .card-columns {
   column-count: 4;
 }

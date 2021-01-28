@@ -6,6 +6,7 @@
     <!-- <Navbar /> -->
     <nav-component :page="'Board'" :board-id="board.id"></nav-component>
     <!-- <div class="comment-modal-background" v-if="showModal"></div> -->
+    <board-modal v-if="showModal && modalType === 'board'"></board-modal>
     <list-modal v-if="showModal && modalType === 'list'"></list-modal>
     <task-modal v-if="showModal && modalType === 'task'"></task-modal>
     <!-- <button @click="addList">
