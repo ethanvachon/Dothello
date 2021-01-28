@@ -45,7 +45,7 @@ class BoardService {
   async putBoard(data, id) {
     try {
       await api.put(baseURL + id, data)
-      this.getBoards()
+      this.getBoard(id)
     } catch (error) {
       logger.error(error)
     }
@@ -53,8 +53,7 @@ class BoardService {
 
   async addCollaborator(id, email) {
     try {
-      const res = await api.post(baseURL + id + '/collaborators', { email: email })
-      console.log(res.data)
+      await api.post(baseURL + id + '/collaborators', { email: email })
     } catch (error) {
       logger.error(error)
     }

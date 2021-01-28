@@ -28,6 +28,10 @@ export default {
   },
   setup(props) {
     return {
+      editComment(e) {
+        // listService.putList({ name: e.target.innerText }, list.value.id, list.value.boardId)
+        commentService.putComment({ name: e.target.innerText }, props.comment.id, props.comment.taskId)
+      },
       accountId: computed(() => AppState.account._id),
       deleteComment: () => { commentService.deleteComment(props.comment.id, props.comment.taskId) }
     }
