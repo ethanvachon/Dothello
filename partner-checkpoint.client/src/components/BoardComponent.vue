@@ -1,16 +1,11 @@
 <template lang="">
-  <div class="card col-3 m-3">
-    {{ board.id }}
-    {{ board.name }}
-    <button @click="deleteBoard">
-      Delete
-    </button>
-    <button @click="changeBoard">
-      Change
-    </button>
-    <button @click="travel">
-      Travel
-    </button>
+  <div class="col-3 m-3 p-1 mt-5" @click="travel">
+    <div :style="`background: linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2)), url('${board.imgUrl}') no-repeat center center /cover;`" id="board">
+      <h5 class="text-white pt-2 pl-2">
+        {{ board.name }}
+      </h5>
+      <!-- <img :src="board.imgUrl" class="test-img"> -->
+    </div>
   </div>
 </template>
 <script>
@@ -31,9 +26,6 @@ export default {
       deleteBoard() {
         boardService.deleteBoard(props.board.id)
       },
-      changeBoard() {
-        boardService.putBoard({ name: 'this is a changed name' }, props.board.id)
-      },
       travel() {
         router.push({ path: '/board/' + props.board.id })
       }
@@ -42,5 +34,5 @@ export default {
 }
 </script>
 <style scoped>
-
+@import "../assets/css/board.css";
 </style>

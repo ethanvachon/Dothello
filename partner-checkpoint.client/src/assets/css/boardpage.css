@@ -1,4 +1,23 @@
-.card-columns {
+#page-board {}
+
+#board-scroll {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: calc(99% - 50px);
+  padding-top: 25px;
+  overflow-x: scroll;
+  z-index: -1;
+  /* white-space: nowrap; */
+}
+
+#lists {
+  width: fit-content;
+  white-space: nowrap;
+}
+
+/* .card-columns {
   column-count: 4;
 }
 
@@ -18,4 +37,4 @@
   .card-columns {
     column-count: 1
   }
-}
+} */

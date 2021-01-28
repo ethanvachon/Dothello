@@ -50,6 +50,15 @@ class BoardService {
       logger.error(error)
     }
   }
+
+  async addCollaborator(id, email) {
+    try {
+      const res = await api.post(baseURL + id + '/collaborators', { email: email })
+      console.log(res.data)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
 }
 
 export const boardService = new BoardService()

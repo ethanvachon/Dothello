@@ -3,19 +3,78 @@ input::-webkit-color-swatch {
 }
 
 .list-card {
-  box-shadow: 0px 10px 8px #bebebe;
+  /* box-shadow: 0px 10px 8px #bebebe; */
   min-height: 100px;
   position: relative;
   border: 0;
   display: inline-block;
-  background-color: var(--theme-background-second)
+  background-color: #ebecf0;
+  width: 272px;
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 10px;
+  user-select: none;
 }
 
 .list-header {
   /* height: 100px; */
+  color: white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.list-header-container {
+  padding-left: 15px;
+  width: 100%;
+}
+
+.list-title {
   text-shadow: 0px 2px 6px #5a5a5a;
   color: white;
+  width: fit-content;
+  margin-top: 10px;
+  border-radius: 10px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  /* CSS3 */
+  white-space: -moz-pre-wrap;
+  /* Firefox */
+  white-space: -pre-wrap;
+  /* Opera <7 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  word-wrap: break-word;
+  /* IE */
+  /* margin-top: 10px */
 }
+
+.list-buttons {
+  margin-top: 10px;
+  margin-right: 15px;
+  margin-left: 15px;
+  /* font-size: 20px; */
+  opacity: 0;
+  transition: opacity 0.1s
+}
+
+.list-header:hover .list-header-container .list-buttons {
+  opacity: 1
+}
+
+.list-button {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* .list-title-bar {
+  width: 100%;
+  height: 5px;
+  border-radius: 10px;
+} */
 
 .list-delete-button {
   position: absolute;
@@ -39,14 +98,20 @@ input::-webkit-color-swatch {
   opacity: 1;
 }
 
-.list-title {
-  text-shadow: 0px 2px 6px #5a5a5a;
-  color: white;
-  /* margin-top: 10px */
-}
-
 .list-footer {
   position: absolute;
   bottom: 0px;
   width: 99%;
+}
+
+.dragThrough {
+  pointer-events: none;
+}
+
+.dragging {
+  pointer-events: auto
+}
+
+.list-body.hover {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
 }

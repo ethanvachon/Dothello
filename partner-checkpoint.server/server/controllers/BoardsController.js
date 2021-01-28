@@ -13,6 +13,7 @@ export class BoardsController extends BaseController {
       .get('/:id/lists', this.getLists)
       .get('/:id/tasks', this.getTasks)
       .post('', this.createBoard)
+      .post('/:id/collaborators', this.addCollaborator)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
   }
@@ -68,7 +69,17 @@ export class BoardsController extends BaseController {
 
   async delete(req, res, next) {
     try {
-      res.send(await boardsService.delete(req.params.id))
+      const data = { _id: req.params.id, userId: req.userInfo.id }
+      res.send(await boardsService.delete(data))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async addCollaborator(req, res, next) {
+    try {
+      // res.send(req.body)
+      res.send(await boardsService.addCollaborator(req.params.id, req.body))
     } catch (error) {
       next(error)
     }

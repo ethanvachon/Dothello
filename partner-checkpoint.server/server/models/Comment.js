@@ -18,6 +18,3 @@ Comment.virtual('user', {
 })
 
 export default Comment
-
-// task 601075f407d902164c5e9ce8
-// user a530a12a-7747-42e6-bf55-9231c4fecad2
