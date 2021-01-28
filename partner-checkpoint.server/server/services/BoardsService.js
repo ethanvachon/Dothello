@@ -49,6 +49,13 @@ class BoardsService {
     }
     return deleted
   }
+
+  async addCollaborator(id, emailQueryObj) {
+    const account = await dbContext.Account.findOne(emailQueryObj)
+    if (account) {
+      return dbContext.Boards.findByIdAndUpdate(id, { $push: { collaborators: account.id } }, { new: true, runValidators: true })
+    }
+  }
 }
 
 export const boardsService = new BoardsService()

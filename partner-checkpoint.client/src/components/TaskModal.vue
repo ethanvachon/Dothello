@@ -10,8 +10,8 @@
       onclick=""
     > -->
         <!-- <comment-modal v-if="state.showComments"></comment-modal> -->
-        <h3>
-          <span class="task-checkbox mr-2" :class="{'checked':state.checked}" @click="checkBox">
+        <h3 class="d-flex align-items-start">
+          <span class="task-checkbox mr-2" :class="{'checked':state.checked}" @click="checkBox(task)">
             <i class="far fa-square" v-if="!state.checked"></i>
             <i class="far fa-check-square" v-if="state.checked"></i>
           </span>
@@ -38,6 +38,7 @@
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { commentService } from '../services/CommentService'
+import { taskService } from '../services/TaskService'
 export default {
   setup() {
     const form = reactive({
@@ -46,15 +47,16 @@ export default {
       taskId: computed(() => AppState.task.id)
     })
     const state = reactive({
-      checked: false
+      checked: computed(() => AppState.task.completed)
     })
     return {
       form,
       state,
       task: computed(() => AppState.task),
       comments: computed(() => AppState.comments),
-      checkBox() {
-        state.checked ? state.checked = false : state.checked = true
+      checkBox(task) {
+        state.checked ? AppState.task.completed = false : AppState.task.completed = true
+        taskService.putTask({ completed: state.checked }, task.id, task.boardId)
       },
       closeModal() {
         AppState.showModal = false

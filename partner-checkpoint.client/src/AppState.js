@@ -9,6 +9,9 @@ export const AppState = reactive({
   boards: [],
   board: {},
   showModal: false,
+  modalType: '',
   comments: [],
-  task: {}
+  task: {},
+  list: {},
+  dragging: false
 })

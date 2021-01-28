@@ -1,8 +1,8 @@
 <template>
   <div id="nav-bar" class="align-items-center container-fluid">
     <div class="row" id="nav-row">
-      <!-- <div id="nav-bar-add"> -->
       <div class="col-4 d-flex align-items-center nav-column">
+        <!-- Add a board/list -->
         <form id="" :class="{'focus':input.add}" class="align-items-center nav-add-input-div" @submit.prevent="add(boardId)">
           <input class="nav-add-input"
                  @focus="input.add = true"
@@ -13,6 +13,7 @@
           <i id="" class="fas fa-plus nav-add-input-icon" :class="{'focus':input.add}" @click="add(boardId)"></i>
         </form>
 
+        <!-- Set image of board -->
         <form :class="{'focus':input.image}"
               class="ml-2 align-items-center nav-add-input-div"
               @submit.prevent="setImage(boardId)"
@@ -26,20 +27,35 @@
           />
           <i id="" class="far fa-image nav-add-input-icon" :class="{'focus':input.image}" @click="setImage(boardId)"></i>
         </form>
+
+        <!-- Add collaborators -->
+        <form :class="{'focus':input.collab}"
+              class="ml-2 align-items-center nav-add-input-div"
+              @submit.prevent="addCollab(boardId)"
+              v-if="page === 'Board'"
+        >
+          <input class="nav-add-input"
+                 @focus="input.collab = true"
+                 @focusout="input.collab = false"
+                 :class="{'focus':input.collab}"
+                 v-model="input.setCollab"
+          />
+          <i id="" class="fas fa-users nav-add-input-icon" :class="{'focus':input.collab}" @click="addCollab(boardId)"></i>
+        </form>
       </div>
-      <!-- <inp class="fas fa-plus" @click="add(page)" ></input> -->
-      <!-- </div> -->
       <div class="col-4 d-flex justify-content-center align-items-center nav-column">
-        <!-- <router-link to="/boards"> -->
+        <!-- Logo -->
         <h3 id="nav-logo" class="m-0" @click="home">
           Dethello
         </h3>
-        <!-- </router-link> -->
       </div>
       <div class="col-4 nav-column d-flex justify-content-end align-items-center">
+        <!-- Logout -->
         <button id="nav-logout" @click="logout" class="mr-3">
           Logout
         </button>
+
+        <!-- Account Image -->
         <img
           :src="user.picture"
           alt="user photo"
@@ -71,7 +87,9 @@ export default {
       add: false,
       addName: '',
       image: false,
-      setImage: ''
+      setImage: '',
+      collab: false,
+      setCollab: ''
     })
     return {
       input,
@@ -96,6 +114,9 @@ export default {
         await boardService.putBoard({ imgUrl: input.setImage }, boardId)
         input.setImage = ''
         await boardService.getBoard(boardId)
+      },
+      addCollab(boardId) {
+        boardService.addCollaborator(boardId, input.setCollab)
       },
       home() {
         router.push('/boards')
