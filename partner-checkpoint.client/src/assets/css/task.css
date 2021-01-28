@@ -1,0 +1,123 @@
+.task {
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.task.dragShadow {
+  opacity: .5
+}
+
+.taskShadow {
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  height: 10px;
+}
+
+.task-checkbox {
+  /* width: 20px; */
+  /* border: 1px solid red; */
+  display: inline-block
+}
+
+/* .task-checkbox:checked+.task-name {
+  text-decoration: line-through;
+} */
+
+.task-checkbox.checked+.task-name {
+  text-decoration: line-through;
+}
+
+.task-name {
+  display: inline-block;
+  width: calc(100% - 40px);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  /* CSS3 */
+  white-space: -moz-pre-wrap;
+  /* Firefox */
+  white-space: -pre-wrap;
+  /* Opera <7 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  word-wrap: break-word;
+  /* IE */
+}
+
+.task-dot-button {
+  border: 0;
+  background-color: rgb(0, 0, 0, 0);
+  right: 0px;
+  position: absolute;
+  color: gray;
+  transition: background-color 0.1s, color 0.1s, opacity 0.1s;
+  opacity: 0;
+  /* display: none; */
+}
+
+.task:hover .task-dot-button {
+  opacity: 1;
+  /* display: inline-block; */
+}
+
+.new-task-form {
+  width: 90%;
+  position: relative;
+}
+
+.new-task-name {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid var(--light-gray);
+  transition: border-bottom 0.3s;
+  color: rgb(43, 43, 43);
+  padding-right: 30px;
+  background-color: rgba(0, 0, 0, 0)
+}
+
+.new-task-name::placeholder {
+  opacity: 0.5;
+}
+
+/* .new-task-name:focus+.new-task-button, .new-task-name:hover+.new-task-button {
+    display: inline-block;
+} */
+
+.new-task-name:valid+.new-task-fake-button {
+  opacity: 0;
+}
+
+.new-task-name:valid+.new-task-fake-button+.new-task-button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.new-task-fake-button {
+  z-index: 2;
+  color: var(--light-gray);
+  border: 0;
+  border-radius: 10%;
+  background-color: rgb(0, 0, 0, 0);
+  position: absolute;
+  right: 0px;
+  top: 0;
+  transition: background-color 0.2s, opacity 0.2s;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.new-task-button {
+  z-index: 3;
+  border: 0;
+  border-radius: 10%;
+  background-color: rgb(0, 0, 0, 0);
+  position: absolute;
+  right: 0px;
+  top: 0;
+  transition: background-color 0.2s, opacity 0.2s;
+  opacity: 0;
+  pointer-events: none;
+}

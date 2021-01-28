@@ -2,11 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
-          alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
-        />
+        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
       </div>
     </router-link>
     <button
@@ -22,14 +18,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
             Home
           </router-link>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <router-link :to="{ name: 'About' }" class="nav-link">
             About
+          </router-link>
+        </li> -->
+        <li class="nav-item">
+          <router-link :to="{ name: 'Boards' }" class="nav-link">
+            Boards
           </router-link>
         </li>
       </ul>
@@ -118,10 +119,10 @@ export default {
 a:hover {
   text-decoration: none;
 }
-.nav-link{
+.nav-link {
   text-transform: uppercase;
 }
-.nav-item .nav-link.router-link-exact-active{
+.nav-item .nav-link.router-link-exact-active {
   color: var(--primary);
 }
 </style>

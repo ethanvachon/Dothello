@@ -1,7 +1,7 @@
 <template>
-  <header>
+  <!-- <header>
     <Navbar />
-  </header>
+  </header> -->
   <main>
     <router-view v-slot="{Component}">
       <transition name="route" mode="out-in">
@@ -9,11 +9,6 @@
       </transition>
     </router-view>
   </main>
-  <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
-    </div>
-  </footer>
 </template>
 
 <script>
@@ -29,6 +24,7 @@ export default {
 }
 </script>
 <style lang="scss">
-@import "./assets/scss/main.scss";
+// @import "./assets/scss/main.scss";
+@import "bootstrap";
 
 </style>

@@ -1,0 +1,48 @@
+#page-board {}
+
+#board-scroll {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: calc(99% - 50px);
+  padding-top: 25px;
+  overflow-x: scroll;
+  z-index: -1;
+  /* white-space: nowrap; */
+}
+
+#lists {
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.board-modal-input {
+  width: 100%;
+  border-radius: 10px;
+  border-radius: 0;
+  border: none;
+  border-bottom: solid 1px black
+}
+
+/* .card-columns {
+  column-count: 4;
+}
+
+@media only screen and (max-width: 1100px) {
+  .card-columns {
+    column-count: 3
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .card-columns {
+    column-count: 2
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card-columns {
+    column-count: 1
+  }
+} */
