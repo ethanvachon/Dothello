@@ -1,6 +1,7 @@
 <template>
   <div id="page-board"
        class="page"
+       :class="{'loading': !board.imgUrl}"
        :style="`background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('${board.imgUrl}') no-repeat center center /cover;`"
   >
     <!-- <Navbar /> -->
@@ -47,8 +48,6 @@ export default {
           clearInterval(checking)
         }
       }, 10)
-      AppState.lists = [{ name: 'Hi this is a board', id: '1' }, { name: 'hi 2' }, { name: ' REEEEE', id: '3' }, { name: 'goteeeem' }, { name: 'board three' }]
-      AppState.tasks = [{ name: 'this is a task', listId: '1' }, { name: 'this should be on the third', listId: '3' }]
     })
     return {
       board: computed(() => AppState.board),

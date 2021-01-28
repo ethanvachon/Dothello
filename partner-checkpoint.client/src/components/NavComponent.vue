@@ -1,5 +1,5 @@
 <template>
-  <div id="nav-bar" class="align-items-center container-fluid">
+  <div id="nav-bar" class="align-items-center container-fluid" :class="{'blue': page === 'Boards' || !boardId}">
     <div class="row" id="nav-row">
       <div class="col-4 d-flex align-items-center nav-column">
         <!-- Settings for board -->
@@ -66,7 +66,7 @@
           Dethello
         </h3>
       </div>
-      <div class="col-4 nav-column d-flex justify-content-end align-items-center">
+      <div class="col-4 nav-column d-flex justify-content-end align-items-center" v-if="user.isAuthenticated">
         <!-- Logout -->
         <button id="nav-logout" @click="logout" class="mr-3">
           Logout
@@ -145,6 +145,10 @@ export default {
       },
       home() {
         router.push('/boards')
+        AppState.board = {}
+        AppState.lists = []
+        AppState.tasks = []
+        AppState.comments = []
       },
       login() {
         AuthService.loginWithPopup()

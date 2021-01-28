@@ -1,4 +1,7 @@
-#page-board {}
+#page-board.loading {
+  background-color: #ebecf0 !important;
+  background: #ebecf0 !important;
+}
 
 #board-scroll {
   position: fixed;
