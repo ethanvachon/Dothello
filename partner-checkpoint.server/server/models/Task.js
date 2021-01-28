@@ -8,14 +8,13 @@ const Task = new Schema(
     name: { type: String, required: true },
     list: { type: ObjectId, ref: 'List', required: true },
     boardId: { type: ObjectId, ref: 'Board', required: true },
-    completed: { type: Boolean, default: false },
-    order: { type: Number, default: 1 }
+    completed: { type: Boolean, default: false }
   }
 )
 
-Task.pre('findOneAndDelete', function(next) {
+Task.pre('findOneAndRemove', function(next) {
   try {
-    commentsService.deleteMany({ taskId: this.conditions._id })
+    commentsService.deleteMany({ taskId: this._conditions._id })
   } catch (error) {
     next(error)
   }
