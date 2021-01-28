@@ -1,15 +1,18 @@
 /**
  * ----- CHECKLIST
  * DONE Footer is gone
- * TODO Navbar is transparent
- * TODO Navbar has a single "boards" go-to
- * TODO Navbar has a nice login butt
- * TODO Navbar just shows user image when logged in
+ * DONE Navbar is transparent
+ * DONE Navbar has a single "boards" go-to
+ * DONE Navbar has a nice login butt
+ * DONE Navbar just shows user image when logged in
  *
  * DONE Lists display in a horizontal fashion
- * TODO Lists have border-shadows
+ * DONE Lists have border-shadows
  * DONE List names are shown in "color bubbles"
  * TODO List names have a delete button
+ * TODO Lists are NOT colored now...
+ *
+ * TODO Tasks have colors
  *
  * ----- STRETCH GOALS
  * NOTE Image API randomizes HD background

@@ -4,6 +4,17 @@
   border-radius: 10px;
 }
 
+.task.dragShadow {
+  opacity: .5
+}
+
+.taskShadow {
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  height: 10px;
+}
+
 .task-checkbox {
   /* width: 20px; */
   /* border: 1px solid red; */

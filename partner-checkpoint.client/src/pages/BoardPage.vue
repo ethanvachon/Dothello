@@ -6,7 +6,8 @@
     <!-- <Navbar /> -->
     <nav-component :page="'Board'" :board-id="board.id"></nav-component>
     <!-- <div class="comment-modal-background" v-if="showModal"></div> -->
-    <comment-modal v-if="showModal"></comment-modal>
+    <list-modal v-if="showModal && modalType === 'list'"></list-modal>
+    <task-modal v-if="showModal && modalType === 'task'"></task-modal>
     <!-- <button @click="addList">
       Add List
     </button> -->
@@ -29,12 +30,14 @@ import { boardService } from '../services/BoardService'
 import { taskService } from '../services/TaskService'
 import { useRoute } from 'vue-router'
 import { AuthService } from '../services/AuthService'
-// import { dragDrop } from '../utils/DragDrop'
+import { dragDrop } from '../utils/DragDrop'
+import ListModal from '../components/ListModal.vue'
 export default {
+  components: { ListModal },
   setup() {
     const route = useRoute()
     onMounted(() => {
-      // dragDrop()
+      dragDrop()
       const checking = setInterval(function() {
         if (AppState.user.isAuthenticated) {
           boardService.getBoard(route.params.id)
@@ -50,6 +53,7 @@ export default {
       board: computed(() => AppState.board),
       lists: computed(() => AppState.lists),
       showModal: computed(() => AppState.showModal),
+      modalType: computed(() => AppState.modalType),
       addList() {
         listService.postList({ name: 'Hi this is a list', boardId: route.params.id, color: 'red' })
       },
@@ -64,4 +68,5 @@ export default {
 @import "../assets/css/boardpage.css";
 @import "../assets/css/global.css";
 @import "../assets/css/comment.css";
+@import "../assets/css/task.css";
 </style>
