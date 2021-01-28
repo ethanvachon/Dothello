@@ -3,7 +3,7 @@
     <div v-if="state.user.isAuthenticated">
       <nav-component :page="'Boards'"></nav-component>
     </div>
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center" :class="{'height': !state.user.isAuthenticated}">
       <div v-if="state.user">
         <welcome-component v-if="!state.user.isAuthenticated" />
       </div>
@@ -50,7 +50,7 @@ export default {
   .bg-dark {
     height: 100vh;
   }
-  .row {
+  .height {
     height: 100vh;
   }
 </style>
