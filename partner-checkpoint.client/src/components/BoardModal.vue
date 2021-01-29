@@ -27,6 +27,7 @@
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { boardService } from '../services/BoardService'
+import { useRouter } from 'vue-router'
 export default {
   setup() {
     const board = computed(() => AppState.board)
@@ -35,6 +36,7 @@ export default {
       imgUrl: board.value.imgUrl,
       collaborators: []
     })
+    const router = useRouter()
     return {
       state,
       board,
@@ -46,6 +48,7 @@ export default {
         // AppState.splice(AppState.lists.findIndex(l => l.id === list.id), 1)
         // AppState.list = {}
         this.closeModal()
+        router.push('/boards')
       },
       closeModal() {
         AppState.showModal = false

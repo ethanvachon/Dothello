@@ -2,6 +2,7 @@ import { AppState } from '../AppState'
 import { Board } from '../models/Board'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
+import { socketService } from './SocketService'
 
 const baseURL = '/api/boards/'
 
@@ -15,10 +16,13 @@ class BoardService {
     }
   }
 
-  async getBoard(id) {
+  async getBoard(id, first = false) {
     try {
       const res = await api.get(baseURL + id)
       AppState.board = new Board(res.data)
+      if (first) {
+        socketService.emit('join:room', id)
+      }
     } catch (error) {
       logger.error(error)
     }

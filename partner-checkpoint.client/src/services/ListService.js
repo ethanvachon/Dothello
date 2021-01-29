@@ -31,9 +31,7 @@ class ListService {
     try {
       data.color = colors[Math.floor(Math.random() * colors.length)]
       await api.post(baseURL, data)
-      await this.getLists(data.boardId)
-      const scroll = document.getElementById('board-scroll')
-      scroll.scrollLeft = scroll.scrollWidth
+      // await this.getLists(data.boardId)
     } catch (error) {
       logger.error(error)
     }

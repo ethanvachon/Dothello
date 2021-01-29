@@ -37,12 +37,13 @@ import ListModal from '../components/ListModal.vue'
 export default {
   components: { ListModal },
   setup() {
+    const board = computed(() => AppState.board)
     const route = useRoute()
     onMounted(() => {
       dragDrop()
       const checking = setInterval(function() {
         if (AppState.user.isAuthenticated) {
-          boardService.getBoard(route.params.id)
+          boardService.getBoard(route.params.id, true)
           listService.getLists(route.params.id)
           taskService.getTasks(route.params.id)
           clearInterval(checking)
@@ -50,7 +51,7 @@ export default {
       }, 10)
     })
     return {
-      board: computed(() => AppState.board),
+      board,
       lists: computed(() => AppState.lists),
       showModal: computed(() => AppState.showModal),
       modalType: computed(() => AppState.modalType),

@@ -28,6 +28,9 @@
       </div>
 
       <hr />
+      <button @click="deleteTask">
+        Delete
+      </button>
       <div id="comment-form">
         <textarea id="comment-form-text" v-model="form.commentInput"></textarea>
       </div>
@@ -63,6 +66,11 @@ export default {
       checkBox(task) {
         state.checked ? AppState.task.completed = false : AppState.task.completed = true
         taskService.putTask({ completed: state.checked }, task.id, task.boardId)
+      },
+      deleteTask() {
+        taskService.deleteTask(task.value.id, task.value.boardId)
+        this.closeModal()
+        AppState.task = {}
       },
       editName(e) {
         taskService.putTask({ name: e.target.innerText }, task.value.id, task.value.boardId)

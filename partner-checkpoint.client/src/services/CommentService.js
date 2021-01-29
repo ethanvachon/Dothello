@@ -18,7 +18,7 @@ class CommentService {
   async postComment(data) {
     try {
       await api.post(baseURL, data)
-      this.getComments(data.taskId)
+      // this.getComments(data.taskId)
     } catch (error) {
       logger.error(error)
     }

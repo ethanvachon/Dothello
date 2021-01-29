@@ -10,6 +10,7 @@ class TaskService {
     try {
       const res = await api.get('/api/boards/' + boardId + '/tasks')
       AppState.tasks = res.data.map(data => new Task(data)).sort((a, b) => a.order - b.order).sort((a, b) => (a.listId > b.listId) ? 1 : (a.listId === b.listId) ? 0 : -1)
+      console.log(AppState.tasks)
     } catch (error) {
       logger.error(error)
     }
