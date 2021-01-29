@@ -80,8 +80,8 @@ export function dragDrop() {
         event.target.children[0].removeChild(shadow)
         event.target.children[0].appendChild(dragged)
         const tasks = parent.children
-        console.log(tasks)
-        console.log(AppState.tasks)
+        // console.log(tasks)
+        // console.log(AppState.tasks)
         for (let i = 0; i < tasks.length; i++) {
           const taskId = tasks[i].getAttribute('task-id')
           AppState.tasks[AppState.tasks.findIndex(task => task.id === taskId)].order = i + 1
