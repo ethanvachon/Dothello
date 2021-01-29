@@ -15,7 +15,12 @@
             <i class="far fa-square" v-if="!state.checked"></i>
             <i class="far fa-check-square" v-if="state.checked"></i>
           </span>
-          <span class="task-name">{{ task.name }}</span>
+          <span
+            class="task-name"
+            style="width: fit-content"
+            :contenteditable="true"
+            @blur="editName"
+          >{{ task.name }}</span>
         </h3>
         <!-- <button class="task-dot-button">
           <i class="fas fa-ellipsis-h" @click="openComments"></i>
@@ -23,6 +28,9 @@
       </div>
 
       <hr />
+      <button @click="deleteTask">
+        Delete
+      </button>
       <div id="comment-form">
         <textarea id="comment-form-text" v-model="form.commentInput"></textarea>
       </div>
@@ -49,14 +57,23 @@ export default {
     const state = reactive({
       checked: computed(() => AppState.task.completed)
     })
+    const task = computed(() => AppState.task)
     return {
       form,
       state,
-      task: computed(() => AppState.task),
+      task,
       comments: computed(() => AppState.comments),
       checkBox(task) {
         state.checked ? AppState.task.completed = false : AppState.task.completed = true
         taskService.putTask({ completed: state.checked }, task.id, task.boardId)
+      },
+      deleteTask() {
+        taskService.deleteTask(task.value.id, task.value.boardId)
+        this.closeModal()
+        AppState.task = {}
+      },
+      editName(e) {
+        taskService.putTask({ name: e.target.innerText }, task.value.id, task.value.boardId)
       },
       closeModal() {
         AppState.showModal = false

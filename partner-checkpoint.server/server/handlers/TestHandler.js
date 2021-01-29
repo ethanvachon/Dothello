@@ -15,8 +15,9 @@ export class TestHandler extends SocketHandler {
       .on('join:room', this.joinRoom)
   }
 
-  joinRoom(roomId) {
-    this.socket.join(roomId)
+  joinRoom(payload) {
+    this.socket.join(payload)
+    console.log('Joined')
   }
 
   async testEvent(payload) {

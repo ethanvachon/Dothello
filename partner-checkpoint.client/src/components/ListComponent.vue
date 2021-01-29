@@ -127,7 +127,9 @@ export default {
       dragging: computed(() => AppState.dragging),
       tasks: computed(() => AppState.tasks.filter(task => task.listId === props.list.id)),
       addTask(taskAmount) {
+        console.log(taskAmount)
         taskService.postTask({ name: state.newTask, list: props.list.id, boardId: props.list.boardId, order: taskAmount + 1 })
+        state.newTask = ''
       },
       openList() {
         AppState.list = props.list

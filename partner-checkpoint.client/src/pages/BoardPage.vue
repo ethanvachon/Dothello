@@ -1,11 +1,13 @@
 <template>
   <div id="page-board"
        class="page"
+       :class="{'loading': !board.imgUrl}"
        :style="`background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('${board.imgUrl}') no-repeat center center /cover;`"
   >
     <!-- <Navbar /> -->
     <nav-component :page="'Board'" :board-id="board.id"></nav-component>
     <!-- <div class="comment-modal-background" v-if="showModal"></div> -->
+    <board-modal v-if="showModal && modalType === 'board'"></board-modal>
     <list-modal v-if="showModal && modalType === 'list'"></list-modal>
     <task-modal v-if="showModal && modalType === 'task'"></task-modal>
     <!-- <button @click="addList">
@@ -35,22 +37,21 @@ import ListModal from '../components/ListModal.vue'
 export default {
   components: { ListModal },
   setup() {
+    const board = computed(() => AppState.board)
     const route = useRoute()
     onMounted(() => {
       dragDrop()
       const checking = setInterval(function() {
         if (AppState.user.isAuthenticated) {
-          boardService.getBoard(route.params.id)
+          boardService.getBoard(route.params.id, true)
           listService.getLists(route.params.id)
           taskService.getTasks(route.params.id)
           clearInterval(checking)
         }
       }, 10)
-      AppState.lists = [{ name: 'Hi this is a board', id: '1' }, { name: 'hi 2' }, { name: ' REEEEE', id: '3' }, { name: 'goteeeem' }, { name: 'board three' }]
-      AppState.tasks = [{ name: 'this is a task', listId: '1' }, { name: 'this should be on the third', listId: '3' }]
     })
     return {
-      board: computed(() => AppState.board),
+      board,
       lists: computed(() => AppState.lists),
       showModal: computed(() => AppState.showModal),
       modalType: computed(() => AppState.modalType),

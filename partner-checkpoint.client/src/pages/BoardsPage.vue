@@ -1,5 +1,5 @@
 <template lang="">
-  <div :class="{'bg-secondary': !state.user.isAuthenticated}">
+  <div id="boards" :class="{'bg-secondary': !state.user.isAuthenticated, 'lighten': state.user.isAuthenticated}">
     <div v-if="state.user.isAuthenticated">
       <nav-component :page="'Boards'"></nav-component>
     </div>
@@ -47,6 +47,10 @@ export default {
 }
 </script>
 <style scoped>
+#boards.lighten {
+  background-color: #ebecf0;
+  height: 100%;
+}
   .bg-dark {
     height: 100vh;
   }

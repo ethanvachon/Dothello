@@ -36,8 +36,7 @@ class TaskService {
 
   async putTask(data, id, boardId) {
     try {
-      const res = await api.put(baseURL + id, data)
-      console.log(res)
+      await api.put(baseURL + id, data)
       if (boardId) {
         this.getTasks(boardId)
       }

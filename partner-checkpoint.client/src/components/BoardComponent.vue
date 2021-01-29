@@ -1,6 +1,6 @@
 <template lang="">
   <div class="col-3 m-3 p-1 mt-5" @click="travel">
-    <div :style="`background: linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2)), url('${board.imgUrl}') no-repeat center center /cover;`" id="board">
+    <div :style="`background: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)), url('${board.imgUrl}') no-repeat center center /cover; overflow-y: hidden`" id="board">
       <h5 class="text-white pt-2 pl-2">
         {{ board.name }}
       </h5>

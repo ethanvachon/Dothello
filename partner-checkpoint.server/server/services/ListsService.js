@@ -1,9 +1,11 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
+import socketService from './SocketService'
 
 class ListsService {
   async create(data) {
-    return dbContext.Lists.create(data)
+    const newList = await dbContext.Lists.create(data)
+    socketService.messageRoom(newList.boardId, 'list:create', newList)
   }
 
   async delete(id) {
@@ -15,11 +17,11 @@ class ListsService {
   }
 
   async edit(body, id) {
-    const edited = dbContext.Lists.findByIdAndUpdate(id, body, { new: true, runValidators: true })
+    const edited = await dbContext.Lists.findByIdAndUpdate(id, body, { new: true, runValidators: true })
     if (!edited) {
       throw new BadRequest('invalid id')
     }
-    return edited
+    socketService.messageRoom(edited.boardId, 'list:edit', edited)
   }
 }
 

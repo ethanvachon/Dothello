@@ -5,6 +5,18 @@ import { api } from './AxiosService'
 
 const baseURL = '/api/lists/'
 
+const colors = [
+  '#ff4747',
+  '#ffac47',
+  '#ffda47',
+  '#87ff47',
+  '#47ffa9',
+  '#47daff',
+  '#4791ff',
+  '#9d47ff',
+  '#ff47ce'
+]
+
 class ListService {
   async getLists(boardId) {
     try {
@@ -17,8 +29,9 @@ class ListService {
 
   async postList(data) {
     try {
+      data.color = colors[Math.floor(Math.random() * colors.length)]
       await api.post(baseURL, data)
-      this.getLists(data.boardId)
+      // await this.getLists(data.boardId)
     } catch (error) {
       logger.error(error)
     }
