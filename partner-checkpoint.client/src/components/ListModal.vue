@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-      <button @click="deleteList(list)">
+      <button class="btn btn-outline-dark mt-1" @click="deleteList(list)">
         Delete
       </button>
       <!-- <button class="task-dot-button">
